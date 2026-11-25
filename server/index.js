@@ -1,5 +1,6 @@
 "use strict";
 
+const { createDispatchService } = require("./dispatch");
 const { createDeviceService } = require("./devices");
 const device = require("./content-types/device");
 const { resolveMessaging } = require("./messaging");
@@ -34,6 +35,9 @@ module.exports = {
     }),
   },
   services: {
+    dispatch: ({ strapi }) => createDispatchService(
+      () => strapi.plugin("firebase-push").service("messaging").getClient(),
+    ),
     devices: ({ strapi }) => {
       const plugin = strapi.plugin("firebase-push");
       return createDeviceService({

@@ -162,6 +162,18 @@ const messageId = await messaging.send({
 });
 ```
 
+### Get a per-device dispatch outcome
+
+If your application selects and authorizes its own device tokens, the server-side `dispatch` service can classify Firebase responses without exposing provider error details.
+
+```js
+const dispatch = strapi.plugin("firebase-push").service("dispatch");
+const status = await dispatch.send({ token: authorizedDeviceToken, notification });
+const statuses = await dispatch.sendBatch({ tokens: authorizedDeviceTokens, notification });
+```
+
+Each outcome is `accepted`, `invalid-token`, or `uncertain`. A batch accepts 1 to 500 tokens and returns outcomes in the same order. A transport failure that leaves the entire batch unconfirmed throws `FCM_BATCH_UNCERTAIN`. An uncertain result can mean the provider outcome was unavailable, so an automatic retry may duplicate a notification. The application owns recipient authorization, consent, token rotation, and retry decisions. Pass `true` as the optional second argument to request Firebase validation without delivery.
+
 ### Schedule or call from another system
 
 For scheduled delivery, have a Strapi cron task call your application service. For an external workflow, expose an authenticated route in your application and authorize dispatch and recipient scope on the server before calling the plugin. The plugin exposes dispatch through server-side services. Its HTTP routes are for authenticated device registration and revocation.

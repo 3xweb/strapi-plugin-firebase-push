@@ -1,6 +1,6 @@
 {
   "name": "@3xweb/strapi-plugin-firebase-push",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Programmatic Firebase push notifications for Strapi 5 with optional encrypted device token storage.",
   "type": "commonjs",
   "exports": {
