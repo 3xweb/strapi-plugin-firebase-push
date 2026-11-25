@@ -1,0 +1,46 @@
+{
+  "name": "@3xweb/strapi-plugin-firebase-push",
+  "version": "0.1.0",
+  "description": "Programmatic Firebase push notifications for Strapi 5 with optional encrypted device token storage.",
+  "type": "commonjs",
+  "exports": {
+    "./package.json": "./package.json",
+    "./strapi-server": "./server/index.js"
+  },
+  "files": [
+    "server",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^5.0.0",
+    "firebase-admin": "^13.3.0"
+  },
+  "strapi": {
+    "kind": "plugin",
+    "name": "firebase-push",
+    "displayName": "Firebase Push",
+    "description": "Firebase Cloud Messaging for Strapi 5"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3xweb/strapi-plugin-firebase-push.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "strapi",
+    "strapi-plugin",
+    "firebase",
+    "fcm",
+    "push-notifications"
+  ]
+}
